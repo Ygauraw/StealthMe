@@ -21,40 +21,44 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/body_text_color" />
 
-    <TextView
-        android:id="@+id/text_ClearHistory_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/text_settingsTitle"
-        android:layout_below="@+id/text_settingsTitle"
-        android:layout_marginTop="17dp"
-        android:text="@string/clear_history_title"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
         android:id="@+id/button_clearHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/text_ClearHistory_title"
-        android:text="@string/button_clear_history" />
+        android:text="@string/button_clear_history"
+        android:textColor="@color/body_text_color" />
+
+    <TextView
+        android:id="@+id/text_ClearHistory_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_clearHistory"
+        android:layout_below="@+id/text_settingsTitle"
+        android:layout_marginTop="15dp"
+        android:text="@string/clear_history_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/body_text_color" />
 
     <TextView
         android:id="@+id/text_radio_AuthType_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_clearHistory"
+        android:layout_alignRight="@+id/checkBox_UseEncryption"
         android:layout_below="@+id/button_clearHistory"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         android:text="@string/radio_authtype_title"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/body_text_color" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/button_clearHistory"
         android:layout_below="@+id/text_radio_AuthType_title"
+        android:layout_marginTop="15dp"
         android:checkedButton="@+id/radio_AuthType_None"
         android:orientation="vertical" >
 
@@ -63,19 +67,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/radio_pin_label" />
+            android:text="@string/radio_pin_label"
+            android:textColor="@color/body_text_color" />
 
         <RadioButton
             android:id="@+id/radio_AuthType_Pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radio_pass_label" />
+            android:text="@string/radio_pass_label"
+            android:textColor="@color/body_text_color" />
 
         <RadioButton
             android:id="@+id/radio_AuthType_None"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radio_none_label" />
+            android:text="@string/radio_none_label"
+            android:textColor="@color/body_text_color" />
     </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/checkBox_UseEncryption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_ChangePinPass"
+        android:layout_below="@+id/button_ChangePinPass"
+        android:layout_marginTop="15dp"
+        android:text="@string/checkBox_UseEncryption_label"
+        android:textColor="@color/body_text_color" />
+
+    <Button
+        android:id="@+id/button_ChangePinPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/radioGroup1"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_marginTop="15dp"
+        android:text="@string/button_ChangePinPass"
+        android:textColor="@color/body_text_color" />
 
 </RelativeLayout>

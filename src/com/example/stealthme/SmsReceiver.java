@@ -1,11 +1,8 @@
 package com.example.stealthme;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
@@ -43,7 +40,6 @@ public class SmsReceiver extends BroadcastReceiver
 		{
 			// Parse the received SMS
 			Object[] pdus = (Object[]) bundle.get(BUNDLE_PDU_KEY);
-			ContentResolver cr = context.getContentResolver();
 			messages = new SmsMessage[pdus.length];
 			
 			// For each message, parse it and push it to the SMS database
@@ -62,23 +58,6 @@ public class SmsReceiver extends BroadcastReceiver
 			// Show it in a toast
 			Toast.makeText(context, body, Toast.LENGTH_LONG).show();
 		}
-	}
-	
-	private void commitMessage(ContentResolver cr, SmsMessage msg)
-	{
-		// Create an entry in the SMS database
-		// Fill in the information of the message
-		ContentValues v = new ContentValues();
-		v.put(ADDRESS, 	msg.getOriginatingAddress());
-		//v.put(DATE, 	msg.getTimestampMillis());
-		//v.put(BODY, 	msg.getMessageBody());
-		v.put(READ, 	MESSAGE_UNREAD);
-		//v.put(STATUS, 	msg.getStatus());
-		v.put(TYPE,  	MESSAGE_TYPE_INBOX);
-		v.put(SEEN, 	MESSAGE_UNSEEN);
-		
-		// Add it to the database
-		cr.insert(Uri.parse(SMS_URI), v);
 	}
 
 };

@@ -16,5 +16,7 @@
     <string name="radio_none_label">No Authentication</string>
     <string name="radio_authtype_title">Authentication to Access App</string>
     <string name="clear_history_title">Clear Message History</string>
+    <string name="checkBox_UseEncryption_label">Use AES 128-bit Encryption?</string>
+    <string name="button_ChangePinPass">Change PIN/Pass</string>
 
 </resources>
