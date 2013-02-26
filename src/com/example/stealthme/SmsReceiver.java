@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver
 {
@@ -35,22 +36,31 @@ public class SmsReceiver extends BroadcastReceiver
 	{
 		// Grab message from bundle
 		Bundle bundle = intent.getExtras();
+		SmsMessage[] messages = null;
+		String body = "";
 		
 		if (bundle != null)
 		{
 			// Parse the received SMS
 			Object[] pdus = (Object[]) bundle.get(BUNDLE_PDU_KEY);
 			ContentResolver cr = context.getContentResolver();
+			messages = new SmsMessage[pdus.length];
 			
 			// For each message, parse it and push it to the SMS database
 			for (int i = 0; i < pdus.length; i++)
 			{
 				// Grab one message, convert from bytes
-				SmsMessage message = SmsMessage.createFromPdu((byte[])pdus[i]);
+				messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
+				
+				// Format it
+				body += messages[i].getOriginatingAddress() + " : " + messages[i].getMessageBody() + "\n";
 				
 				// Add it to the database
-				commitMessage(cr, message);
+				// commitMessage(cr, message);
 			}
+			
+			// Show it in a toast
+			Toast.makeText(context, body, Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -60,10 +70,10 @@ public class SmsReceiver extends BroadcastReceiver
 		// Fill in the information of the message
 		ContentValues v = new ContentValues();
 		v.put(ADDRESS, 	msg.getOriginatingAddress());
-		v.put(DATE, 	msg.getTimestampMillis());
-		v.put(BODY, 	msg.getMessageBody());
+		//v.put(DATE, 	msg.getTimestampMillis());
+		//v.put(BODY, 	msg.getMessageBody());
 		v.put(READ, 	MESSAGE_UNREAD);
-		v.put(STATUS, 	msg.getStatus());
+		//v.put(STATUS, 	msg.getStatus());
 		v.put(TYPE,  	MESSAGE_TYPE_INBOX);
 		v.put(SEEN, 	MESSAGE_UNSEEN);
 		
