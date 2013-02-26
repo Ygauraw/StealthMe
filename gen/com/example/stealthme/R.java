@@ -32,16 +32,16 @@ public final class R {
         public static final int action_settings=0x7f09000d;
         public static final int button_OpenSettings=0x7f090003;
         public static final int button_SendMessage=0x7f090001;
-        public static final int button_clearHistory=0x7f09000c;
-        public static final int radioGroup1=0x7f090006;
+        public static final int button_clearHistory=0x7f090007;
+        public static final int radioGroup1=0x7f090009;
         public static final int radio_AuthType_None=0x7f09000a;
-        public static final int radio_AuthType_Pass=0x7f090009;
-        public static final int radio_AuthType_Pin=0x7f090008;
-        public static final int text_ClearHistory_title=0x7f090007;
+        public static final int radio_AuthType_Pass=0x7f09000c;
+        public static final int radio_AuthType_Pin=0x7f09000b;
+        public static final int text_ClearHistory_title=0x7f090006;
         public static final int text_History=0x7f090004;
         public static final int text_Message=0x7f090002;
         public static final int text_PhoneNumber=0x7f090000;
-        public static final int text_radio_AuthType_title=0x7f09000b;
+        public static final int text_radio_AuthType_title=0x7f090008;
         public static final int text_settingsTitle=0x7f090005;
     }
     public static final class layout {
