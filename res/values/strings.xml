@@ -18,5 +18,8 @@
     <string name="clear_history_title">Clear Message History</string>
     <string name="checkBox_UseEncryption_label">Use AES 128-bit Encryption?</string>
     <string name="button_ChangePinPass">Change PIN/Pass</string>
+    <string name="image_description_logo">StealthMe Logo</string>
+    <string name="login_password_title">Enter your password</string>
+    <string name="button_Authenticate">Authenticate</string>
 
 </resources>
