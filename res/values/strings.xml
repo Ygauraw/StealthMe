@@ -16,10 +16,11 @@
     <string name="radio_none_label">No Authentication</string>
     <string name="radio_authtype_title">Authentication to Access App</string>
     <string name="clear_history_title">Clear Message History</string>
-    <string name="checkBox_UseEncryption_label">Use AES 128-bit Encryption?</string>
     <string name="button_ChangePinPass">Change PIN/Pass</string>
     <string name="image_description_logo">StealthMe Logo</string>
     <string name="login_password_title">Enter your password</string>
     <string name="button_Authenticate">Authenticate</string>
-
+	<string name="button_SaveSettngs">Save Settings</string>
+	<string name="login_pin_title">Enter your PIN</string>
+    
 </resources>

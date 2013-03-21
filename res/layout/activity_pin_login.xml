@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    android:clickable="false"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:textAlignment="viewStart"
+    tools:context=".LoginActivity" >
+
+    <TextView
+        android:id="@+id/text_LoginPasswordPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_LoginLogo"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_pin_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/body_text_color" />
+
+    <ImageView
+        android:id="@+id/image_LoginLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="115dp"
+        android:contentDescription="@string/image_description_logo"
+        android:src="@drawable/ic_launcher" />
+
+    <EditText
+        android:id="@+id/text_LoginPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="numberPassword"
+        android:textColor="@color/body_text_color"
+        android:textColorHint="@color/body_text_color" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button_LoginTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:onClick="authenticate"
+        android:text="@string/button_Authenticate"
+        android:textColor="@color/body_text_color" />
+
+</RelativeLayout>

@@ -34,26 +34,29 @@ public final class R {
         public static final int button_LoginTest=0x7f090003;
         public static final int button_OpenSettings=0x7f090007;
         public static final int button_SendMessage=0x7f090005;
-        public static final int button_clearHistory=0x7f09000a;
-        public static final int checkBox_UseEncryption=0x7f09000d;
+        public static final int button_clearHistory=0x7f09000b;
         public static final int image_LoginLogo=0x7f090001;
-        public static final int radioGroup1=0x7f09000e;
+        public static final int radioGroup_AuthType=0x7f09000e;
         public static final int radio_AuthType_None=0x7f09000f;
         public static final int radio_AuthType_Pass=0x7f090011;
         public static final int radio_AuthType_Pin=0x7f090010;
-        public static final int text_ClearHistory_title=0x7f09000b;
+        public static final int text_ClearHistory_title=0x7f09000c;
         public static final int text_History=0x7f090008;
         public static final int text_LoginPassword=0x7f090002;
         public static final int text_LoginPasswordPrompt=0x7f090000;
+        public static final int text_LoginPin=0x7f090009;
         public static final int text_Message=0x7f090006;
         public static final int text_PhoneNumber=0x7f090004;
-        public static final int text_radio_AuthType_title=0x7f09000c;
-        public static final int text_settingsTitle=0x7f090009;
+        public static final int text_radio_AuthType_title=0x7f09000d;
+        public static final int text_settingsTitle=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int activity_settings=0x7f030002;
+        public static final int activity_password_login=0x7f030002;
+        public static final int activity_pin_login=0x7f030003;
+        public static final int activity_settings=0x7f030004;
+        public static final int activity_startup=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -61,16 +64,17 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int button_Authenticate=0x7f050013;
-        public static final int button_ChangePinPass=0x7f050010;
+        public static final int button_Authenticate=0x7f050012;
+        public static final int button_ChangePinPass=0x7f05000f;
+        public static final int button_SaveSettngs=0x7f050013;
         public static final int button_clear_history=0x7f050009;
         public static final int button_send_text=0x7f050005;
-        public static final int checkBox_UseEncryption_label=0x7f05000f;
         public static final int clear_history_title=0x7f05000e;
         public static final int hello_world=0x7f050002;
         public static final int history_hint=0x7f050006;
-        public static final int image_description_logo=0x7f050011;
-        public static final int login_password_title=0x7f050012;
+        public static final int image_description_logo=0x7f050010;
+        public static final int login_password_title=0x7f050011;
+        public static final int login_pin_title=0x7f050014;
         public static final int message_box_hint=0x7f050003;
         public static final int method_openSettings=0x7f050007;
         public static final int phone_number_hint=0x7f050004;
