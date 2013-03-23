@@ -1,3 +1,12 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//	SettingsActivity.java
+// 	Description: Launched from the MainActivity to allow the user to edit their
+//	preferences, such as how they login to the app and clearing their message
+//	history.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 package com.example.stealthme;
 
 import android.app.Activity;

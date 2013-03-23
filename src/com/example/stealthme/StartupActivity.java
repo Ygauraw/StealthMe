@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//	StartupActivity.java
+// 	Description: Launched every time application is clicked from the app drawer.
+// 	This activity selects whether to launch the message activity, the password
+// 	login activity or the PIN login activity. It has the LAUNCHER and MAIN
+//	intent filters.
+//
+////////////////////////////////////////////////////////////////////////////////
+
 package com.example.stealthme;
 
 import android.app.Activity;
@@ -27,7 +37,7 @@ public class StartupActivity extends Activity
         // Decide which window to open based on the stored authentication method
         if (storedAuthType.equals("none"))
         {
-        	Intent intent = new Intent(this, MainActivity.class);
+        	Intent intent = new Intent(this, ThreadsActivity.class);
             startActivity(intent);
         }
         else if (storedAuthType.equals("password"))
@@ -45,7 +55,7 @@ public class StartupActivity extends Activity
         	// No stored data, probably first time loading app; assume no authentication
         	editor.putString("authType", "none");
         	editor.commit();
-        	Intent intent = new Intent(this, MainActivity.class);
+        	Intent intent = new Intent(this, ThreadsActivity.class);
             startActivity(intent);
         }
         else

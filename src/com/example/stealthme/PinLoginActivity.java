@@ -38,7 +38,7 @@ public class PinLoginActivity extends Activity
 	        if (input.equals(stored))
 	        {
 	        	pin.setText("");	// Reset text in PIN field
-	    		Intent intent = new Intent(this, MainActivity.class);
+	    		Intent intent = new Intent(this, ThreadsActivity.class);
 	            startActivity(intent);	// Launch main
 	        }
 	        else
