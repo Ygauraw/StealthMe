@@ -29,6 +29,8 @@ public class StartupActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startup);
 		
+		Toast.makeText(getBaseContext(), "1", Toast.LENGTH_SHORT);
+		
 		// Open a shared preferences editor and grab user's stored authentication type
     	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String storedAuthType = settings.getString("authType", NO_DATA);

@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int body_text_color=0x7f070000;
+        public static final int nav_bar_color=0x7f070001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -29,14 +30,17 @@ public final class R {
         public static final int settings=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
+        public static final int LinearLayout1=0x7f090013;
+        public static final int action_settings=0x7f090017;
         public static final int button_ChangePinPass=0x7f090012;
         public static final int button_LoginTest=0x7f090003;
         public static final int button_OpenSettings=0x7f090007;
         public static final int button_SendMessage=0x7f090005;
+        public static final int button_Settings=0x7f090015;
         public static final int button_clearHistory=0x7f09000b;
+        public static final int imageView1=0x7f090014;
         public static final int image_LoginLogo=0x7f090001;
-        public static final int listView_Threads=0x7f090013;
+        public static final int listView_Threads=0x7f090016;
         public static final int radioGroup_AuthType=0x7f09000e;
         public static final int radio_AuthType_None=0x7f09000f;
         public static final int radio_AuthType_Pass=0x7f090011;
