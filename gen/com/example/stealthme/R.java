@@ -28,10 +28,12 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
         public static final int main_background=0x7f020001;
         public static final int settings=0x7f020002;
+        public static final int threads_list_icon=0x7f020003;
+        public static final int threads_list_icon_png=0x7f020004;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f090013;
-        public static final int action_settings=0x7f090017;
+        public static final int action_settings=0x7f090019;
         public static final int button_ChangePinPass=0x7f090012;
         public static final int button_LoginTest=0x7f090003;
         public static final int button_OpenSettings=0x7f090007;
@@ -54,6 +56,8 @@ public final class R {
         public static final int text_PhoneNumber=0x7f090004;
         public static final int text_radio_AuthType_title=0x7f09000d;
         public static final int text_settingsTitle=0x7f09000a;
+        public static final int threads_list_image=0x7f090017;
+        public static final int threads_list_text=0x7f090018;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -63,6 +67,7 @@ public final class R {
         public static final int activity_settings=0x7f030004;
         public static final int activity_startup=0x7f030005;
         public static final int activity_threads=0x7f030006;
+        public static final int list_item_threads=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -117,5 +122,8 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+    }
+    public static final class styles {
+        public static final int body_text_color=0x7f0a0000;
     }
 }

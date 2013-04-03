@@ -84,10 +84,18 @@ public class ThreadsActivity extends Activity
 		{
 			// First grab the address
 			address = c.getString(addressIndex);
+			address = StringManager.removeSpecialCharacters(address);	// Remove special characters
 			
-			// Check if we've already seen this address
-			body = c.getString(bodyIndex);
-			messages.add(address + "\n" + body);
+			// Now check to see if we've seen it already (for organizing conversations)
+			// If not, process it
+			if (!seenAddresses.contains(address))
+			{
+				body = c.getString(bodyIndex);
+				messages.add(address + "\n" + body);
+				
+				// Add this address to our list of seen addresses
+				seenAddresses.add(address);
+			}
 		} while (c.moveToNext());
 		
 		// Add the list to our listView

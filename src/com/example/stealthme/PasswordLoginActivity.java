@@ -38,7 +38,7 @@ public class PasswordLoginActivity extends Activity
         if (input.equals(stored))
         {
         	password.setText("");	// Reset text in password field
-    		Intent intent = new Intent(this, MessagingActivity.class);
+    		Intent intent = new Intent(this, ThreadsActivity.class);
             startActivity(intent);	// Launch main
         }
         else
