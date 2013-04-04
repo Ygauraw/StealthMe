@@ -113,7 +113,7 @@ public class ThreadsActivity extends Activity
 		
 		// Add the hashmap to our listview
 		String[] from = {"image", "address", "body"};
-		int[] to = {R.id.image, R.id.address, R.id.body};
+		int[] to = {R.id.image, R.id.date, R.id.body};
 		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), hashList, R.layout.image_listview_item, from, to);
 		threads.setAdapter(adapter);
 	}
@@ -138,7 +138,6 @@ public class ThreadsActivity extends Activity
     	Intent intent = new Intent(this, MessagingActivity.class);
     	
     	String address = seenAddresses.get(position);
-    	address = StringManager.removeSpecialCharacters(address);
     	intent.putExtra("targetAddress", address);
     	
     	startActivity(intent);

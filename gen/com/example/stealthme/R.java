@@ -40,19 +40,22 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f0a0017;
         public static final int RelativeLayout1=0x7f0a0004;
-        public static final int action_settings=0x7f0a001f;
-        public static final int address=0x7f0a001b;
+        public static final int action_settings=0x7f0a0021;
         public static final int body=0x7f0a001c;
         public static final int button_ChangePinPass=0x7f0a0016;
         public static final int button_LoginTest=0x7f0a0003;
         public static final int button_SendMessage=0x7f0a0007;
         public static final int button_Settings=0x7f0a0006;
         public static final int button_clearHistory=0x7f0a000f;
+        public static final int date=0x7f0a001b;
         public static final int image=0x7f0a0005;
         public static final int image_LoginLogo=0x7f0a0001;
         public static final int linearLayout1=0x7f0a001a;
+        public static final int listView_MessageHistory=0x7f0a000c;
         public static final int listView_Threads=0x7f0a0018;
         public static final int listview_item_base=0x7f0a0019;
+        public static final int message_history_body=0x7f0a0020;
+        public static final int message_history_date=0x7f0a001f;
         public static final int radioGroup_AuthType=0x7f0a0012;
         public static final int radio_AuthType_None=0x7f0a0013;
         public static final int radio_AuthType_Pass=0x7f0a0015;
@@ -60,7 +63,6 @@ public final class R {
         public static final int rule_1=0x7f0a000b;
         public static final int rule_2=0x7f0a0009;
         public static final int text_ClearHistory_title=0x7f0a0010;
-        public static final int text_History=0x7f0a000c;
         public static final int text_LoginPassword=0x7f0a0002;
         public static final int text_LoginPasswordPrompt=0x7f0a0000;
         public static final int text_LoginPin=0x7f0a000d;
@@ -84,6 +86,7 @@ public final class R {
         public static final int activity_threads=0x7f030006;
         public static final int image_listview_item=0x7f030007;
         public static final int list_item_threads=0x7f030008;
+        public static final int message_history_listview_item=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f090000;

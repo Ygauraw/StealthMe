@@ -5,7 +5,9 @@
     android:background="@color/main_background_color"
     android:clickable="false"
     android:textAlignment="viewStart"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true">
     
     <RelativeLayout
         android:id="@+id/RelativeLayout1"
@@ -46,6 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/text_PhoneNumber"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:text="@string/button_send_text"
         android:textColor="@color/body_text_color_dark" />
 
@@ -57,6 +61,8 @@
         android:layout_below="@+id/RelativeLayout1"
         android:background="@drawable/list_item_gradient"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:hint="@string/phone_number_hint"
         android:inputType="phone"
         android:minHeight="20dp"
@@ -67,49 +73,46 @@
         <requestFocus />
     </EditText>
 
-    <LinearLayout android:id="@+id/rule_2"
+    <LinearLayout
+        android:id="@+id/rule_2"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_above="@+id/text_Message"
         android:layout_centerHorizontal="true"
-        android:background="@color/list_item_divider_color"
+        android:background="@color/body_text_color_dark"
         android:orientation="vertical" >
 
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/rule_1"
+    <LinearLayout
+        android:id="@+id/rule_1"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@+id/text_PhoneNumber"
         android:layout_centerHorizontal="true"
-        android:background="@color/list_item_divider_color"
+        android:background="@color/body_text_color_dark"
         android:orientation="vertical" >
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/text_History"
+    <ListView
+        android:id="@+id/listView_MessageHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/rule_2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/rule_1"
-        android:background="@drawable/list_item_gradient"
-        android:ems="10"
-        android:focusable="false"
-        android:gravity="left|start"
-        android:hint="Message history empty."
-        android:inputType="textMultiLine"
-        android:padding="5dp"
-        android:textColor="@color/body_text_color"
-        android:textColorHint="@color/body_text_color" />
+        android:transcriptMode="alwaysScroll"
+        android:stackFromBottom="true">
+
+    </ListView>
 
     <EditText
         android:id="@+id/text_Message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_SendMessage"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:background="@drawable/list_item_gradient"
         android:ems="10"
         android:gravity="left|start"
