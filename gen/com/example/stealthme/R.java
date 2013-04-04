@@ -11,8 +11,13 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int body_text_color=0x7f070000;
-        public static final int nav_bar_color=0x7f070001;
+        /**  Custom Colors 
+         */
+        public static final int body_text_color=0x7f080000;
+        public static final int body_text_color_dark=0x7f080001;
+        public static final int list_item_divider_color=0x7f080004;
+        public static final int main_background_color=0x7f080003;
+        public static final int nav_bar_color=0x7f080002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -26,38 +31,48 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int main_background=0x7f020001;
-        public static final int settings=0x7f020002;
-        public static final int threads_list_icon=0x7f020003;
-        public static final int threads_list_icon_png=0x7f020004;
+        public static final int list_item_gradient=0x7f020001;
+        public static final int main_background=0x7f020002;
+        public static final int settings=0x7f020003;
+        public static final int threads_list_icon=0x7f020004;
+        public static final int threads_list_icon_png=0x7f020005;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f090013;
-        public static final int action_settings=0x7f090019;
-        public static final int button_ChangePinPass=0x7f090012;
-        public static final int button_LoginTest=0x7f090003;
-        public static final int button_OpenSettings=0x7f090007;
-        public static final int button_SendMessage=0x7f090005;
-        public static final int button_Settings=0x7f090015;
-        public static final int button_clearHistory=0x7f09000b;
-        public static final int imageView1=0x7f090014;
-        public static final int image_LoginLogo=0x7f090001;
-        public static final int listView_Threads=0x7f090016;
-        public static final int radioGroup_AuthType=0x7f09000e;
-        public static final int radio_AuthType_None=0x7f09000f;
-        public static final int radio_AuthType_Pass=0x7f090011;
-        public static final int radio_AuthType_Pin=0x7f090010;
-        public static final int text_ClearHistory_title=0x7f09000c;
-        public static final int text_History=0x7f090008;
-        public static final int text_LoginPassword=0x7f090002;
-        public static final int text_LoginPasswordPrompt=0x7f090000;
-        public static final int text_LoginPin=0x7f090009;
-        public static final int text_Message=0x7f090006;
-        public static final int text_PhoneNumber=0x7f090004;
-        public static final int text_radio_AuthType_title=0x7f09000d;
-        public static final int text_settingsTitle=0x7f09000a;
-        public static final int threads_list_image=0x7f090017;
-        public static final int threads_list_text=0x7f090018;
+        public static final int LinearLayout1=0x7f0a0017;
+        public static final int RelativeLayout1=0x7f0a0004;
+        public static final int action_settings=0x7f0a001f;
+        public static final int address=0x7f0a001b;
+        public static final int body=0x7f0a001c;
+        public static final int button_ChangePinPass=0x7f0a0016;
+        public static final int button_LoginTest=0x7f0a0003;
+        public static final int button_SendMessage=0x7f0a0007;
+        public static final int button_Settings=0x7f0a0006;
+        public static final int button_clearHistory=0x7f0a000f;
+        public static final int image=0x7f0a0005;
+        public static final int image_LoginLogo=0x7f0a0001;
+        public static final int linearLayout1=0x7f0a001a;
+        public static final int listView_Threads=0x7f0a0018;
+        public static final int listview_item_base=0x7f0a0019;
+        public static final int radioGroup_AuthType=0x7f0a0012;
+        public static final int radio_AuthType_None=0x7f0a0013;
+        public static final int radio_AuthType_Pass=0x7f0a0015;
+        public static final int radio_AuthType_Pin=0x7f0a0014;
+        public static final int rule_1=0x7f0a000b;
+        public static final int rule_2=0x7f0a0009;
+        public static final int text_ClearHistory_title=0x7f0a0010;
+        public static final int text_History=0x7f0a000c;
+        public static final int text_LoginPassword=0x7f0a0002;
+        public static final int text_LoginPasswordPrompt=0x7f0a0000;
+        public static final int text_LoginPin=0x7f0a000d;
+        public static final int text_Message=0x7f0a000a;
+        public static final int text_PhoneNumber=0x7f0a0008;
+        public static final int text_radio_AuthType_title=0x7f0a0011;
+        public static final int text_settingsTitle=0x7f0a000e;
+        public static final int threads_list_image=0x7f0a001d;
+        public static final int threads_list_text=0x7f0a001e;
+    }
+    public static final class integer {
+        public static final int AddressMaxLines=0x7f050000;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -67,33 +82,34 @@ public final class R {
         public static final int activity_settings=0x7f030004;
         public static final int activity_startup=0x7f030005;
         public static final int activity_threads=0x7f030006;
-        public static final int list_item_threads=0x7f030007;
+        public static final int image_listview_item=0x7f030007;
+        public static final int list_item_threads=0x7f030008;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int button_Authenticate=0x7f050012;
-        public static final int button_ChangePinPass=0x7f05000f;
-        public static final int button_SaveSettngs=0x7f050013;
-        public static final int button_clear_history=0x7f050009;
-        public static final int button_send_text=0x7f050005;
-        public static final int clear_history_title=0x7f05000e;
-        public static final int hello_world=0x7f050002;
-        public static final int history_hint=0x7f050006;
-        public static final int image_description_logo=0x7f050010;
-        public static final int login_password_title=0x7f050011;
-        public static final int login_pin_title=0x7f050014;
-        public static final int message_box_hint=0x7f050003;
-        public static final int method_openSettings=0x7f050007;
-        public static final int phone_number_hint=0x7f050004;
-        public static final int radio_authtype_title=0x7f05000d;
-        public static final int radio_none_label=0x7f05000c;
-        public static final int radio_pass_label=0x7f05000b;
-        public static final int radio_pin_label=0x7f05000a;
-        public static final int settings_title=0x7f050008;
+        public static final int action_settings=0x7f060001;
+        public static final int app_name=0x7f060000;
+        public static final int button_Authenticate=0x7f060012;
+        public static final int button_ChangePinPass=0x7f06000f;
+        public static final int button_SaveSettngs=0x7f060013;
+        public static final int button_clear_history=0x7f060009;
+        public static final int button_send_text=0x7f060005;
+        public static final int clear_history_title=0x7f06000e;
+        public static final int hello_world=0x7f060002;
+        public static final int history_hint=0x7f060006;
+        public static final int image_description_logo=0x7f060010;
+        public static final int login_password_title=0x7f060011;
+        public static final int login_pin_title=0x7f060014;
+        public static final int message_box_hint=0x7f060003;
+        public static final int method_openSettings=0x7f060007;
+        public static final int phone_number_hint=0x7f060004;
+        public static final int radio_authtype_title=0x7f06000d;
+        public static final int radio_none_label=0x7f06000c;
+        public static final int radio_pass_label=0x7f06000b;
+        public static final int radio_pin_label=0x7f06000a;
+        public static final int settings_title=0x7f060008;
     }
     public static final class style {
         /** 
@@ -117,13 +133,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
     public static final class styles {
-        public static final int body_text_color=0x7f0a0000;
+        public static final int body_text_color=0x7f0b0000;
     }
 }

@@ -10,6 +10,7 @@
 package com.example.stealthme;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -20,13 +21,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ThreadsActivity extends Activity
 {
+	
+	// Global variables
+	List<String> seenAddresses = new ArrayList<String>();
+	
 	// File names
 	Uri SMS_URI = Uri.parse("content://sms/inbox");
 	
@@ -46,39 +52,35 @@ public class ThreadsActivity extends Activity
 		threadListUpdate();
 		
 		// Make each list item clickable
-		threads.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		threads.setOnItemClickListener(new OnItemClickListener()
 		{
-	          public void onItemClick(AdapterView<?> arg0, View view, int position, long id)
-	          {
-	        	  // Parse out address and body
-	        	  String message = ((TextView)view).getText().toString();
-	        	  String address, body;
-	        	  int line = 0;
-	        	  while (line < message.length() && message.charAt(line) != '\n')
-	        		  line++;
-	        	  address = message.subSequence(0, line).toString();
-	        	  body = message.subSequence(line + 1, message.length()).toString();
-	        	  
-	        	  // When clicked, show a toast with the TextView text
-	        	  Toast.makeText(getApplicationContext(), "Body: " + body, Toast.LENGTH_SHORT).show();
-	        	  Toast.makeText(getApplicationContext(), "Address: " + address, Toast.LENGTH_SHORT).show();
-	          }
-	    });
+			  public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+			  {
+				  // Open messaging activity with the selected address
+				  openMessaging(view, position);
+			  }
+		});
 	}
 	
 	// Accesses the phone's SMS database, pulling threads sorted by date
 	private void threadListUpdate()
 	{
-		ArrayList<String> messages = new ArrayList<String>();
+		// Reset the seen addresses list
+		seenAddresses.clear();
+		
 		ContentResolver cr = getContentResolver();
 		Cursor c = cr.query(SMS_URI, null, null, null, null);
 		
+		// Create hashmap for handling multiple items in listview
+		List<HashMap<String,String>> hashList = new ArrayList<HashMap<String,String>>();
+		
 		// Iterate through each thread in the database and add it to our list
+		String[] addresses  = new String[256];
+		String[] bodies = new String[256];
 		String address;
-		String body;
 		int addressIndex = c.getColumnIndex(SmsReceiver.ADDRESS);
 		int bodyIndex = c.getColumnIndex(SmsReceiver.BODY);
-		List<String> seenAddresses = new ArrayList<String>();
+		int count = 0;
 		c.moveToFirst();
 		do
 		{
@@ -90,16 +92,29 @@ public class ThreadsActivity extends Activity
 			// If not, process it
 			if (!seenAddresses.contains(address))
 			{
-				body = c.getString(bodyIndex);
-				messages.add(address + "\n" + body);
+				// Save the address and body
+				addresses[count] = c.getString(addressIndex);
+				bodies[count++] = c.getString(bodyIndex);
 				
 				// Add this address to our list of seen addresses
 				seenAddresses.add(address);
 			}
-		} while (c.moveToNext());
+		} while (c.moveToNext() && count < 256);
 		
-		// Add the list to our listView
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, messages);
+		// Populate our hashmap
+		for(int i = 0; i < count; i++)
+		{
+            HashMap<String, String> hm = new HashMap<String,String>();
+            hm.put("address", addresses[i]);
+            hm.put("body", bodies[i]);
+            hm.put("image", Integer.toString(R.drawable.threads_list_icon_png));
+            hashList.add(hm);
+        }
+		
+		// Add the hashmap to our listview
+		String[] from = {"image", "address", "body"};
+		int[] to = {R.id.image, R.id.address, R.id.body};
+		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), hashList, R.layout.image_listview_item, from, to);
 		threads.setAdapter(adapter);
 	}
 	
@@ -115,6 +130,18 @@ public class ThreadsActivity extends Activity
     {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+    
+    // Opens the messaging screen
+    public void openMessaging(View view, int position)
+    {
+    	Intent intent = new Intent(this, MessagingActivity.class);
+    	
+    	String address = seenAddresses.get(position);
+    	address = StringManager.removeSpecialCharacters(address);
+    	intent.putExtra("targetAddress", address);
+    	
+    	startActivity(intent);
     }
 	
 };

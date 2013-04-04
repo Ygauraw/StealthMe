@@ -24,7 +24,6 @@ public class MessagingActivity extends Activity
 
 	// Views to be instantiated
 	Button button_SendMessage;
-	Button button_OpenSettings;
 	EditText text_PhoneNumber;
 	EditText text_Message;
 	EditText text_History;
@@ -41,12 +40,18 @@ public class MessagingActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
         
+        // Grab extra data
+        Intent intent = getIntent();
+        String recipient = intent.getStringExtra("targetAddress");
+        
         // Instantiate buttons and fields
         button_SendMessage = (Button)findViewById(R.id.button_SendMessage);
-        button_OpenSettings = (Button)findViewById(R.id.button_OpenSettings);
         text_PhoneNumber = (EditText)findViewById(R.id.text_PhoneNumber);
         text_Message = (EditText)findViewById(R.id.text_Message);
         text_History = (EditText)findViewById(R.id.text_History);
+        
+        // Set phone number
+        if (recipient != null) text_PhoneNumber.setText(recipient);
         
         // Handle sending the message when the user hits 'Send'
         button_SendMessage.setOnClickListener(new View.OnClickListener() 
@@ -69,20 +74,10 @@ public class MessagingActivity extends Activity
             }
         });
         
-        // Handle opening settings menu
-        button_OpenSettings.setOnClickListener(new View.OnClickListener() 
-        {
-            public void onClick(View v) 
-            {                
-            	// Send an intent to open the settings activity
-            	openSettings(v);
-            }
-        });
-        
         // Load the message history
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         history = settings.getString("messageHistory", "");
-        text_History.setText(history);	// Display the loaded history
+        text_History.setText(history);			// Display the loaded history
     }
     
     // On activity resume
@@ -136,6 +131,13 @@ public class MessagingActivity extends Activity
     public void openSettings(View view)
     {
         Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+    
+    // Opens the threads activity
+    public void openThreads(View view)
+    {
+        Intent intent = new Intent(this, ThreadsActivity.class);
         startActivity(intent);
     }
 

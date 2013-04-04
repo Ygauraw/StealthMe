@@ -3,23 +3,26 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@color/main_background_color"
     android:clickable="false"
     android:orientation="vertical"
     android:textAlignment="viewStart"
     tools:context=".MainActivity" >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/nav_bar_color"
+        android:background="#c7c7c7"
         android:minHeight="50dp"
         android:padding="5dp" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:contentDescription="@string/image_description_logo"
             android:src="@drawable/ic_launcher" />
 
@@ -27,20 +30,19 @@
             android:id="@+id/button_Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:background="@drawable/settings"
             android:minHeight="30dp"
-            android:minWidth="30dp" 
+            android:minWidth="30dp"
             android:onClick="openSettings" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listView_Threads"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_vertical_margin" >
+        android:layout_height="wrap_content" >
     </ListView>
 
 </LinearLayout>
