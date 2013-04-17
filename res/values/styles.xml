@@ -23,5 +23,6 @@
     <color name="nav_bar_color">#000000</color>
     <color name="main_background_color">#e2e2e2</color>
     <color name="list_item_divider_color">#c9c9c9</color>
+    <color name="page_header_bacgkround_color">#c7c7c7</color>
 
 </resources>

@@ -39,7 +39,8 @@ public class MessagingActivity extends Activity
 	
 	// Working variables
 	String history = "";	// Used to store message history
-	
+	SimpleAdapter adapter;
+	List<HashMap<String, String>> hashList;
 	
 	// File names
 	static final String PREFS_NAME = "preferences";	// Shared prefs filename
@@ -68,8 +69,15 @@ public class MessagingActivity extends Activity
         // Retrieve message history
         updateMessageHistory(recipient);
         
+        // Add the hashmap to our listview
+     	String[] from = {"date", "body"};
+     	int[] to = {R.id.message_history_date, R.id.message_history_body};
+     	adapter = new SimpleAdapter(getBaseContext(), hashList, R.layout.message_history_listview_item, from, to);
+     	messages.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        
         // Set phone number
-        if (recipient != null) text_PhoneNumber.setText(recipient);
+        if (recipient != null) text_PhoneNumber.setText("[" + recipient + "]");
         
         // Handle sending the message when the user hits 'Send'
         button_SendMessage.setOnClickListener(new View.OnClickListener() 
@@ -143,7 +151,7 @@ public class MessagingActivity extends Activity
 		int dateIndex = c.getColumnIndex(SmsReceiver.DATE);
 		
 		// Create hashmap for handling multiple items in listview
-		List<HashMap<String, String>> hashList = new ArrayList<HashMap<String,String>>();
+		hashList = new ArrayList<HashMap<String,String>>();
 		
 		// Scroll through the SMS database
 		if(c.moveToFirst())
@@ -170,12 +178,6 @@ public class MessagingActivity extends Activity
 		    hm.put("date", dates[i]);
 		    hashList.add(hm);
 		}
-		
-		// Add the hashmap to our listview
-		String[] from = {"date", "body"};
-		int[] to = {R.id.message_history_date, R.id.message_history_body};
-		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), hashList, R.layout.message_history_listview_item, from, to);
-		messages.setAdapter(adapter);
     }
 
     @Override

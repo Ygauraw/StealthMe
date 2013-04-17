@@ -4,62 +4,18 @@
     android:layout_height="match_parent"
     android:background="@color/main_background_color"
     android:clickable="false"
-    android:textAlignment="viewStart"
-    tools:context=".MainActivity"
     android:descendantFocusability="beforeDescendants"
-	android:focusableInTouchMode="true">
-    
-    <RelativeLayout
-        android:id="@+id/RelativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#c7c7c7"
-        android:minHeight="50dp"
-        android:padding="5dp" >
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/image_description_logo"
-            android:src="@drawable/ic_launcher"
-            android:onClick="openThreads"/>
-
-        <Button
-            android:id="@+id/button_Settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/settings"
-            android:minHeight="30dp"
-            android:minWidth="30dp"
-            android:onClick="openSettings"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="5dp"/>
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/button_SendMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/text_PhoneNumber"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:text="@string/button_send_text"
-        android:textColor="@color/body_text_color_dark" />
+    android:focusableInTouchMode="true"
+    android:gravity="right"
+    android:textAlignment="viewStart"
+    tools:context=".MainActivity" >
 
     <EditText
         android:id="@+id/text_PhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/RelativeLayout1"
-        android:background="@drawable/list_item_gradient"
+        android:background="@color/page_header_bacgkround_color"
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
@@ -77,7 +33,7 @@
         android:id="@+id/rule_2"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_above="@+id/text_Message"
+        android:layout_above="@+id/box_MessageSend"
         android:layout_centerHorizontal="true"
         android:background="@color/body_text_color_dark"
         android:orientation="vertical" >
@@ -102,26 +58,42 @@
         android:layout_above="@+id/rule_2"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/rule_1"
-        android:transcriptMode="alwaysScroll"
+        android:layout_weight="1"
+        android:transcriptMode="normal"
         android:stackFromBottom="true">
 
     </ListView>
 
-    <EditText
-        android:id="@+id/text_Message"
+    <LinearLayout
+        android:id="@id/box_MessageSend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_SendMessage"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/list_item_gradient"
-        android:ems="10"
-        android:gravity="left|start"
-        android:hint="Message Body"
-        android:inputType="textMultiLine"
-        android:lines="3"
-        android:padding="5dp"
-        android:textAlignment="textStart"
-        android:textColor="@color/body_text_color"
-        android:textColorHint="@color/body_text_color" />
+        android:background="@color/page_header_bacgkround_color"
+        android:baselineAligned="true"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/text_Message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Message Body"
+            android:inputType="textMultiLine"
+            android:textColor="@color/body_text_color_dark"
+            android:textColorHint="@color/body_text_color" />
+
+        <Button
+            android:id="@+id/button_SendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/button_send_text"
+            android:textColor="@color/body_text_color_dark" />
+
+    </LinearLayout>
 
 </RelativeLayout>
