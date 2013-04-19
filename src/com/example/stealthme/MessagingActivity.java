@@ -8,9 +8,13 @@
 
 package com.example.stealthme;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.telephony.SmsManager;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -141,7 +146,7 @@ public class MessagingActivity extends Activity
     {
     	// Working variables
     	String thisAddress;	// For comparing target address against stored address
-    	String[] dates = new String[256];
+    	long[] dates = new long[256];
     	String[] bodies = new String[256];
     	int count = 0;
     	ContentResolver cr = getContentResolver();
@@ -150,8 +155,15 @@ public class MessagingActivity extends Activity
 		int bodyIndex = c.getColumnIndex(SmsReceiver.BODY);
 		int dateIndex = c.getColumnIndex(SmsReceiver.DATE);
 		
+		// Deque acting as a stack to reverse the order of the messages
+		Deque<HashMap<String, String>> messageStack = new ArrayDeque<HashMap<String, String>>();
+		
 		// Create hashmap for handling multiple items in listview
 		hashList = new ArrayList<HashMap<String,String>>();
+		
+		// Date formatter
+		SimpleDateFormat formatter = new SimpleDateFormat("hh:mma, MMM dd", Locale.US);
+		String formattedDate = "";
 		
 		// Scroll through the SMS database
 		if(c.moveToFirst())
@@ -164,20 +176,28 @@ public class MessagingActivity extends Activity
 				// Compare it against our target address
 				if (thisAddress.equals(address))
 				{
-					dates[count] = c.getString(dateIndex);		// Grab body and date
+					dates[count] = c.getLong(dateIndex);		// Grab body and date
 					bodies[count++] = c.getString(bodyIndex);
 				}
 			} while (c.moveToNext() && count < 256);
 		}
 		
-		// Populate our hashmap
+		// Populate our message stack
 		for(int i = 0; i < count; i++)
 		{
 			HashMap<String, String> hm = new HashMap<String,String>();
 		    hm.put("body", bodies[i]);
-		    hm.put("date", dates[i]);
-		    hashList.add(hm);
+		    
+		    // Convert date to readable format
+		    formattedDate = formatter.format(dates[i]);
+		    hm.put("date", formattedDate);
+		    
+		    // Push to message stack
+		    messageStack.push(hm);
 		}
+		
+		// Populate our hashmap from the message stack to obtain reversed order of messages
+		while (!messageStack.isEmpty()) hashList.add(messageStack.pop());
     }
 
     @Override
@@ -189,4 +209,3 @@ public class MessagingActivity extends Activity
     }
     
 };
-
