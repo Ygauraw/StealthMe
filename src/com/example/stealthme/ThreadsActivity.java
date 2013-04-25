@@ -24,8 +24,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.TextView;
+//import android.widget.Toast;
 
 public class ThreadsActivity extends Activity
 {
@@ -69,6 +69,7 @@ public class ThreadsActivity extends Activity
 		seenAddresses.clear();
 		
 		ContentResolver cr = getContentResolver();
+		
 		Cursor c = cr.query(SMS_URI, null, null, null, null);
 		
 		// Create hashmap for handling multiple items in listview
@@ -81,7 +82,7 @@ public class ThreadsActivity extends Activity
 		int addressIndex = c.getColumnIndex(SmsReceiver.ADDRESS);
 		int bodyIndex = c.getColumnIndex(SmsReceiver.BODY);
 		int count = 0;
-		c.moveToFirst();
+		if(!c.moveToFirst()) return;
 		do
 		{
 			// First grab the address
