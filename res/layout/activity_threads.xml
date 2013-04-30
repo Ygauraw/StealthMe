@@ -10,7 +10,7 @@
     tools:context=".MainActivity" >
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout1"
+        android:id="@+id/relativeLayour_PinHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/page_header_bacgkround_color"

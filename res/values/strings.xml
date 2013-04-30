@@ -19,7 +19,7 @@
     <string name="button_ChangePinPass">Change PIN/Pass</string>
     <string name="image_description_logo">StealthMe Logo</string>
     <string name="login_password_title">Enter your password</string>
-    <string name="button_Authenticate">Authenticate</string>
+    <string name="button_Authenticate">Go</string>
 	<string name="button_SaveSettngs">Save Settings</string>
 	<string name="login_pin_title">Enter your PIN</string>
     

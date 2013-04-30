@@ -3,7 +3,9 @@ package com.example.stealthme;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -27,7 +29,10 @@ public class SmsReceiver extends BroadcastReceiver
     public static final int MESSAGE_READ = 1;
     public static final int MESSAGE_UNSEEN = 0;
     public static final int MESSAGE_SEEN = 1;
-
+    public static final Uri CONTACTS_URI = ContactsContract.Contacts.CONTENT_URI;
+    public static final String CONTACTS_NAME = ContactsContract.Contacts.DISPLAY_NAME_PRIMARY;
+    public static final String CONTACTS_ID = ContactsContract.Contacts._ID;
+    
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
