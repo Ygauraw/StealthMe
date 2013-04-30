@@ -16,15 +16,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
-//import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Bundle;
 import android.telephony.SmsManager;
-//import android.text.format.DateFormat;
+import android.telephony.SmsMessage;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +37,7 @@ import android.widget.Toast;
 
 public class MessagingActivity extends Activity
 {
+	SQLiteDatabase db;
 
 	// Views to be instantiated
 	Button button_SendMessage;
@@ -56,6 +59,7 @@ public class MessagingActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messaging);
+        db = new DatabaseHandler(this).getWritableDatabase();
         
         // Grab extra data
         Intent intent = getIntent();
@@ -87,14 +91,18 @@ public class MessagingActivity extends Activity
         // Handle sending the message when the user hits 'Send'
         button_SendMessage.setOnClickListener(new View.OnClickListener() 
         {
-            public void onClick(View v) 
+            
+			public void onClick(View v) 
             {                
             	// Grab the data from each field
                 String phoneNumber = text_PhoneNumber.getText().toString();
-                String message = text_Message.getText().toString();       
-                
+                String message = text_Message.getText().toString();    
+                                
                 // Check if the user entered data into both fields, send the text if they did
-                if (phoneNumber.length() > 0 && message.length() > 0) sendMessage(phoneNumber, message);                
+                if (phoneNumber.length() > 0 && message.length() > 0) {
+//                	addContact(new Contact(phoneNumber, message, getBaseContext()));                	
+                	sendMessage(phoneNumber, message);                
+                }
                 else			// Display error message; there was an empty field
                 {
                     Toast.makeText(getBaseContext(), "Either the phone number or message field was left blank.", Toast.LENGTH_SHORT).show();
@@ -103,8 +111,20 @@ public class MessagingActivity extends Activity
                 // Reset the message box
                 text_Message.setText("");
             }
-        });
+        });        
     }
+    
+    void addContact(Contact contact) {	
+		
+		ContentValues values = new ContentValues();
+		values.put(DatabaseHandler.KEY_NAME, contact.getName()); //Contact Name
+		values.put(DatabaseHandler.KEY_PH_NO, contact.getPhoneNumber()); //Contact phone
+		values.put(DatabaseHandler.KEY_MSG, contact.getMessage());
+		
+		// Inserting Row
+		db.insert(DatabaseHandler.TABLE_CONTACTS, null, values);
+				
+	}
     
     // On activity resume
     @Override
@@ -176,8 +196,15 @@ public class MessagingActivity extends Activity
 				// Compare it against our target address
 				if (thisAddress.equals(address))
 				{
-					dates[count] = c.getLong(dateIndex);		// Grab body and date
-					bodies[count++] = c.getString(bodyIndex);
+					dates[count] = c.getLong(dateIndex);		// Grab body and date					
+					bodies[count] = c.getString(bodyIndex);
+					try {
+						bodies[count++] = SmsEncryptor.encrypt(bodies[count], "pass");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+//						e.printStackTrace();
+						Toast.makeText(getBaseContext(), "Not working", Toast.LENGTH_LONG).show();
+					}
 				}
 			} while (c.moveToNext() && count < 256);
 		}
@@ -207,5 +234,42 @@ public class MessagingActivity extends Activity
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+    public static final String BUNDLE_PDU_KEY = "pdus";
+    
+    public void onReceive(Context context, Intent intent)
+	{
+		// Grab message from bundle
+		Bundle bundle = intent.getExtras();
+		SmsMessage[] messages = null;
+		String body = "";
+		
+		if (bundle != null)
+		{
+			// Parse the received SMS
+			Object[] pdus = (Object[]) bundle.get(BUNDLE_PDU_KEY);
+			messages = new SmsMessage[pdus.length];
+			
+			// For each message, parse it and push it to the SMS database
+			for (int i = 0; i < pdus.length; i++)
+			{
+				// Grab one message, convert from bytes
+				messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
+				
+				// Format it
+				body += messages[i].getOriginatingAddress() + " : " + messages[i].getMessageBody() + "\n";
+				
+				// Add it to the database
+				// commitMessage(cr, message);
+			}
+			
+			// Show it in a toast
+			Toast.makeText(context, body, Toast.LENGTH_LONG).show();
+		}
+	}
+    
+//    @Override
+//    public void onPause() {
+//    	db.close(); // Closing database connection
+//    }   
     
 };
