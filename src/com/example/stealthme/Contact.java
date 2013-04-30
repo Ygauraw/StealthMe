@@ -1,5 +1,8 @@
 package com.example.stealthme;
 
+import android.content.Context;
+import android.widget.Toast;
+
 public class Contact {
 	
 	// private variables
@@ -18,22 +21,22 @@ public class Contact {
 		this._name = name;
 		this._phone_number = _phone_number;
 		this._message = message;
-	}
+	}	
 	
 	// constructor
-	public Contact(String name, String _phone_number) {
+	public Contact(String name, String _phone_number, String message) {
 		this._name = name;
 		this._phone_number = _phone_number;
+		this._message = message;
 	}
-	
+		
 	// constructor
-		public Contact(String name, String _phone_number, String message) {
-			this._name = name;
-			this._phone_number = _phone_number;
-			this._message = message;
-			
-		}
-	
+	public Contact(String _phone_number, String message, Context context) {		
+		this._phone_number = _phone_number;
+		this._message = message;
+		Toast.makeText(context, "Database created", Toast.LENGTH_LONG).show();
+	}
+		
 	// getting ID
 	public int getID() {
 		return this._id;
