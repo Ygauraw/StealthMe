@@ -2,6 +2,7 @@ package com.example.stealthme;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,20 +19,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "contactsManagerNew.db";
 	
 	// Contacts table name
-	private static final String TABLE_CONTACTS = "contacts";
+	public static final String TABLE_CONTACTS = "contacts";
 	
 	//Contacts Table Columns name
-	private static final String KEY_ID = "id";
-	private static final String KEY_NAME = "name";
-	private static final String KEY_PH_NO = "phone_number";
-	private static final String KEY_MSG = "Message";
-	
+	public static final String KEY_ID = "id";
+	public static final String KEY_NAME = "name";
+	public static final String KEY_PH_NO = "phone_number";
+	public static final String KEY_MSG = "Message";
+		
 	public DatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);		
 	}
 	
-	// Creating Tables
-	
+	// Creating Tables	
+
 	public void onCreate(SQLiteDatabase db) {		
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
