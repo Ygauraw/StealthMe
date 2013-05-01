@@ -49,6 +49,7 @@ public class MessagingActivity extends Activity
 	String history = "";	// Used to store message history
 	SimpleAdapter adapter;
 	List<HashMap<String, String>> hashList;
+	//ContactManager myContacts = new ContactManager(this);
 	
 	// File names
 	static final String PREFS_NAME = "preferences";	// Shared prefs filename
@@ -64,6 +65,7 @@ public class MessagingActivity extends Activity
         // Grab extra data
         Intent intent = getIntent();
         String recipient = intent.getStringExtra("targetAddress");
+        String recipientName = intent.getStringExtra("targetName");
         
         // Instantiate buttons and fields
         button_SendMessage = (Button)findViewById(R.id.button_SendMessage);
@@ -86,7 +88,7 @@ public class MessagingActivity extends Activity
         adapter.notifyDataSetChanged();
         
         // Set phone number
-        if (recipient != null) text_PhoneNumber.setText("[" + recipient + "]");
+        text_PhoneNumber.setText("<" + recipientName + ">" + "[" + recipient + "]");
         
         // Handle sending the message when the user hits 'Send'
         button_SendMessage.setOnClickListener(new View.OnClickListener() 
