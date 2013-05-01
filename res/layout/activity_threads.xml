@@ -37,6 +37,18 @@
             android:minWidth="30dp"
             android:onClick="openSettings" />
 
+        <Button
+            android:id="@+id/button_Refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button_Settings"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/button_Settings"
+            android:background="@drawable/refresh"
+            android:minHeight="30dp"
+            android:minWidth="30dp"
+            android:onClick="refresh" />
+
     </RelativeLayout>
 
     <ListView
