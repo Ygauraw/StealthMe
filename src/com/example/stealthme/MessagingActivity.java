@@ -69,7 +69,7 @@ public class MessagingActivity extends Activity
         
         // Grab extra data
         Intent intent = getIntent();
-        String recipient = intent.getStringExtra("targetAddress");
+        final String recipient = intent.getStringExtra("targetAddress");
         String recipientName = intent.getStringExtra("targetName");
         
         // Instantiate buttons and fields
@@ -102,13 +102,12 @@ public class MessagingActivity extends Activity
 			public void onClick(View v) 
             {                
             	// Grab the data from each field
-                String phoneNumber = text_PhoneNumber.getText().toString();
                 String message = text_Message.getText().toString();    
                                 
                 // Check if the user entered data into both fields, send the text if they did
-                if (phoneNumber.length() > 0 && message.length() > 0) {
+                if (recipient.length() > 0 && message.length() > 0) {
 //                	addContact(new Contact(phoneNumber, message, getBaseContext()));                	
-                	sendMessage(phoneNumber, message);                
+                	sendMessage(recipient, message);                
                 }
                 else			// Display error message; there was an empty field
                 {
@@ -152,6 +151,12 @@ public class MessagingActivity extends Activity
     	// but in our case it will just send it back to MainActivity       
         SmsManager messageManager = SmsManager.getDefault();
         messageManager.sendTextMessage(targetNumber, null, targetMessage, null, null);
+        
+        // Commit message to sent
+        ContentValues v = new ContentValues();
+        v.put(SmsReceiver.ADDRESS, targetNumber);
+        v.put(SmsReceiver.BODY, targetMessage); 
+        getApplicationContext().getContentResolver().insert(Uri.parse("content://sms/sent"), v);
     }
     
     // Opens the settings menu screen - invoked by the settings button
