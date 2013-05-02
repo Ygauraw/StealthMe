@@ -49,6 +49,18 @@
             android:minWidth="30dp"
             android:onClick="refresh" />
 
+        <Button
+            android:id="@+id/button_NewMessage"
+            android:onClick="newMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_Settings"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/button_Refresh"
+            android:background="@drawable/new_message"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+
     </RelativeLayout>
 
     <ListView

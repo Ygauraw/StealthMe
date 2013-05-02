@@ -1,0 +1,164 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_item_gradient"
+    android:clickable="false"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:textAlignment="viewStart"
+    tools:context=".ChangePinPassActivity" >
+
+    <ViewSwitcher
+        android:id="@+id/viewSwitcher_switch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_changepin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_changepin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/changepin_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/body_text_color_dark"
+                android:textColorHint="@color/body_text_color_dark" />
+
+            <TextView
+                android:id="@+id/textView_changepin_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changepin_title"
+                android:layout_marginTop="10dp"
+                android:text="@string/changepin_prompt"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/body_text_color_dark" />
+
+            <EditText
+                android:id="@+id/text_changepin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changepin_prompt"
+                android:ems="10"
+                android:inputType="numberPassword"
+                android:textColor="@color/body_text_color_dark" >
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView_changepin_reprompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/text_changepin"
+                android:layout_marginTop="20dp"
+                android:text="@string/changepinpass_reprompt"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/body_text_color_dark" />
+
+            <EditText
+                android:id="@+id/text_changepin_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changepin_reprompt"
+                android:ems="10"
+                android:inputType="numberPassword"
+                android:textColor="@color/body_text_color_dark" />
+
+            <Button
+                android:id="@+id/button_changepin"
+                android:onClick="changePin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/text_changepin_again"
+                android:layout_below="@+id/text_changepin_again"
+                android:layout_marginTop="20dp"
+                android:text="@string/button_Authenticate"
+                android:textColor="@color/body_text_color_dark" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_changepass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_changepass_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/changepass_title"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/body_text_color_dark"
+                android:textColorHint="@color/body_text_color_dark" />
+
+            <TextView
+                android:id="@+id/textView_changepass_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changepass_title"
+                android:text="@string/changepass_prompt"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/body_text_color_dark" />
+
+            <EditText
+                android:id="@+id/text_changepass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changepass_prompt"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColor="@color/body_text_color_dark" />
+
+            <TextView
+                android:id="@+id/textView_changpass_reprompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/text_changepass"
+                android:text="@string/changepinpass_reprompt"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/body_text_color_dark" />
+
+            <EditText
+                android:id="@+id/text_changepass_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView_changpass_reprompt"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColor="@color/body_text_color_dark" />
+
+            <Button
+                android:id="@+id/button_changepass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/text_changepass_again"
+                android:onClick="changePass"
+                android:text="@string/button_Authenticate"
+                android:textColor="@color/body_text_color_dark" />
+        </RelativeLayout>
+
+    </ViewSwitcher>
+
+</RelativeLayout>

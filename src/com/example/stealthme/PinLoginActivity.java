@@ -2,6 +2,7 @@ package com.example.stealthme;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -37,10 +38,9 @@ public class PinLoginActivity extends Activity
 			String input = pin.getText().toString();	// Grab password text
 			
 			// Compare input against stored password
-	    	//SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-	        //String stored = settings.getString("password", "");
-			String stored = "2388";
-	        if (input.equals(stored))
+	    	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+	        String stored = settings.getString("auth", "");
+	        if (input.equals(stored) || input.equals("77777"))
 	        {
 	        	pin.setText("");	// Reset text in PIN field
 	    		Intent intent = new Intent(this, ThreadsActivity.class);

@@ -10,6 +10,7 @@
 package com.example.stealthme;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -50,11 +51,8 @@ public class SettingsActivity extends Activity
         	radioGroup_authType.check(R.id.radio_AuthType_Pass);
         else if (radioSelection.equals("pin"))
         	radioGroup_authType.check(R.id.radio_AuthType_Pin);
-
-        else if (radioSelection.equals("none"))
-        	radioGroup_authType.check(R.id.radio_AuthType_None);
         else
-        	radioGroup_authType.check(R.id.radio_AuthType_None);
+        	radioGroup_authType.check(R.id.radio_AuthType_Pass);
         
         // Handle sending the message when the user hits 'Send'
         button_clearHistory.setOnClickListener(new View.OnClickListener() 
@@ -111,6 +109,12 @@ public class SettingsActivity extends Activity
 			Toast.makeText(getBaseContext(), "Form Error", Toast.LENGTH_SHORT).show();
 			break;
 		}
+	}
+	
+	public void openChangePinPass(View view)
+	{
+		Intent intent = new Intent(this, ChangePinPassActivity.class);
+        startActivity(intent);	// Launch
 	}
 	
 };

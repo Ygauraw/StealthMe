@@ -231,22 +231,79 @@ public class MessagingActivity extends Activity
 			} while (c.moveToNext() && count < 256);
 		}
 		
-		// Populate our message stack
-		for(int i = 0; i < count; i++)
+		// Close cursor
+		c.close();
+		
+		// Now grab messages that we have sent to this person
+		Cursor cc = cr.query(Uri.parse("content://sms/sent"), null, null, null, null);
+		addressIndex = cc.getColumnIndex(SmsReceiver.ADDRESS);
+		bodyIndex = cc.getColumnIndex(SmsReceiver.BODY);
+		dateIndex = cc.getColumnIndex(SmsReceiver.DATE);
+		int sentCount = 0;
+		long[] sentDates = new long[256];
+		String[] sentBodies = new String[256];
+		if (cc.moveToFirst())
 		{
-			HashMap<String, String> hm = new HashMap<String,String>();
-		    hm.put("body", bodies[i]);
-		    
-		    // Convert date to readable format
-		    formattedDate = formatter.format(dates[i]);
-		    hm.put("date", formattedDate);
-		    
-		    // Push to message stack
-		    messageStack.push(hm);
+			do
+			{
+				// Grab the recipient's address
+				thisAddress = StringManager.removeSpecialCharacters(cc.getString(addressIndex));
+
+				// Compare it against our target address
+				if (thisAddress.equals(address))
+				{
+					sentDates[sentCount] = cc.getLong(dateIndex);
+					sentBodies[sentCount++] = "ME: " + cc.getString(bodyIndex);
+				}
+			} while (cc.moveToNext() && sentCount < 256);
 		}
 		
-		// Populate our hashmap from the message stack to obtain reversed order of messages
+		// Populate the message stack
+		int index, myIndex;
+		index = myIndex = 0;
+		while (index < count || myIndex < sentCount)
+		{
+			HashMap<String, String> hm = new HashMap<String, String>();
+			if (index < count && !(myIndex < sentCount))
+			{
+				hm.put("body", bodies[index]);
+				formattedDate = formatter.format(dates[index]);
+				hm.put("date", formattedDate);
+				index++;
+				messageStack.push(hm);
+			}
+			else if (myIndex < sentCount && !(index < count))
+			{
+				hm.put("body", sentBodies[myIndex]);
+				formattedDate = formatter.format(sentDates[myIndex]);
+				hm.put("date", formattedDate);
+				myIndex++;
+				messageStack.push(hm);
+			}
+			else if (myIndex < sentCount && index < count)
+			{
+				if (dates[index] > sentDates[myIndex])
+				{
+					hm.put("body", bodies[index]);
+					formattedDate = formatter.format(dates[index]);
+					hm.put("date", formattedDate);
+					index++;
+					messageStack.push(hm);
+				}
+				else
+				{
+					hm.put("body", sentBodies[myIndex]);
+					formattedDate = formatter.format(sentDates[myIndex]);
+					hm.put("date", formattedDate);
+					myIndex++;
+					messageStack.push(hm);
+				}
+			}
+		}
+		
+		// Reverse the order to emulate chat functionality
 		while (!messageStack.isEmpty()) hashList.add(messageStack.pop());
+
     }
 
     @Override

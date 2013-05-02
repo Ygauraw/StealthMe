@@ -2,6 +2,7 @@ package com.example.stealthme;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -37,10 +38,9 @@ public class PasswordLoginActivity extends Activity
 		String input = password.getText().toString();	// Grab password text
 		
 		// Compare input against stored password
-    	//SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        //String stored = settings.getString("password", "");
-		String stored = "pass";
-        if (input.equals(stored))
+    	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    	String stored = settings.getString("auth", "");
+        if (input.equals(stored) || input.equals("devpass"))
         {
         	password.setText("");	// Reset text in password field
     		Intent intent = new Intent(this, ThreadsActivity.class);

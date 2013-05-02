@@ -22,5 +22,12 @@
     <string name="button_Authenticate">Go</string>
 	<string name="button_SaveSettngs">Save Settings</string>
 	<string name="login_pin_title">Enter your PIN</string>
+	<string name="changepin_title">Change PIN</string>
+	<string name="changepass_title">Change Password</string>
+	<string name="changepin_prompt">Please enter your new PIN:</string>
+	<string name="changepass_prompt">Please enter your new password:</string>
+	<string name="changepinpass_reprompt">Once more:</string>
+	<string name="newmessage_title">New Conversation</string>
+	<string name="newmessage_prompt">Address of new recipient:</string>
     
 </resources>

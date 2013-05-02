@@ -78,18 +78,11 @@
             android:text="@string/radio_pass_label"
             android:textColor="@color/body_text_color_dark" />
 
-        <RadioButton
-            android:id="@+id/radio_AuthType_None"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="processRadioClick"
-            android:text="@string/radio_none_label"
-            android:textColor="@color/body_text_color_dark" />
-
     </RadioGroup>
 
     <Button
         android:id="@+id/button_ChangePinPass"
+        android:onClick="openChangePinPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/radioGroup_AuthType"

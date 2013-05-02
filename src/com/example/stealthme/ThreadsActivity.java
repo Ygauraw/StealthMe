@@ -181,5 +181,12 @@ public class ThreadsActivity extends Activity
     	startActivity(intent);
     }
 	
+    // Opens new message activity
+    public void newMessage(View view)
+    {
+    	Intent intent = new Intent(this, NewMessageActivity.class);
+    	startActivity(intent);
+    }
+    
 };
 
