@@ -29,6 +29,7 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -59,6 +60,10 @@ public class MessagingActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        
         setContentView(R.layout.activity_messaging);
         db = new DatabaseHandler(this).getWritableDatabase();
         
@@ -205,7 +210,7 @@ public class MessagingActivity extends Activity
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 //						e.printStackTrace();
-						Toast.makeText(getBaseContext(), "Not working", Toast.LENGTH_LONG).show();
+						//Toast.makeText(getBaseContext(), "Not working", Toast.LENGTH_LONG).show();
 					}
 				}
 			} while (c.moveToNext() && count < 256);

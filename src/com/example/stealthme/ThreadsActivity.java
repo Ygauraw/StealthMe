@@ -20,6 +20,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -45,6 +46,10 @@ public class ThreadsActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
+		//Remove title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_threads);
 		
 		// Instatiate buttons and views
@@ -129,7 +134,7 @@ public class ThreadsActivity extends Activity
             HashMap<String, String> hm = new HashMap<String,String>();
             hm.put("name", names[i]);
             hm.put("body", bodies[i]);
-            hm.put("image", Integer.toString(R.drawable.threads_list_icon_png));
+            hm.put("image", Integer.toString(R.drawable.threads_list_icon));
             hashList.add(hm);
         }
 		
