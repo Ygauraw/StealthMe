@@ -8,23 +8,47 @@ public class Sms
 {
 	public String text;
 	public char headerValue;
-	public char saltIndex;
+	public int[] saltIndex;
 	public static EncryptionSuite encrypt = null;
+	public byte[] key;
+	public boolean isHandshake = false;
+	public String recipient;
 	
-	public Sms(String Text, char HeaderValue, char SaltIndex, String password)
+	public Sms(String Text, String password, String Recipient)
 	{
 		text = Text;
-		headerValue = HeaderValue;
-		saltIndex = SaltIndex;
-		encrypt = new EncryptionSuite(password);
+		encrypt = EncryptionSuite.getInstance(password);
+		isHandshake = false;
+		recipient = Recipient;
+		saltIndex = new int[1];
 	}
 	
-	public String serialize(byte[] key)
+	public Sms(char HeaderValue, byte[] Key, String Password, String Recipient)
+	{
+		headerValue = HeaderValue;
+		key = Key;
+		encrypt = EncryptionSuite.getInstance(Password);
+		recipient = Recipient;
+		isHandshake = true;
+		saltIndex = new int[1];
+	}
+	
+	public String serialize(String Password)
 	{
 		try {
-		byte[] temp = {(byte) headerValue};
-		temp = concatenate(temp, text.getBytes("UTF-8"));
-		return "" + (char) 29 + saltIndex + Base64.encodeToString(temp, Base64.DEFAULT);
+			if (isHandshake)
+			{
+				byte[] temp = {(byte) headerValue};
+				temp = concatenate(temp, key);
+				return "" + (char) 28 + Base64.encodeToString(temp, Base64.DEFAULT);
+			}
+			else
+			{
+				byte[] temp = {0xF};
+				temp = concatenate(temp, text.getBytes("UTF-8"));
+				temp = encrypt.encrypt(temp, recipient, saltIndex, Password);
+				return "" + (char) 29 + (char) saltIndex[0] + Base64.encodeToString(temp, Base64.DEFAULT);
+			}
 		} catch (Exception e) { return null; }
 	}
 	

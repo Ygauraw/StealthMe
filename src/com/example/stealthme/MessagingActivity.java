@@ -21,6 +21,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -39,6 +40,8 @@ import android.widget.Toast;
 public class MessagingActivity extends Activity
 {
 	SQLiteDatabase db;
+	
+	EncryptionSuite encrypt;
 
 	// Views to be instantiated
 	Button button_SendMessage;
@@ -56,10 +59,17 @@ public class MessagingActivity extends Activity
 	static final String PREFS_NAME = "preferences";	// Shared prefs filename
 	Uri SMS_URI = Uri.parse("content://sms/inbox");	// SMS inbox filename
 	
+	//Preferences
+	SharedPreferences prefs;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        
+        //Encryption
+        prefs = getSharedPreferences("preferences", 0);
+        encrypt = EncryptionSuite.getInstance(prefs.getString("auth", null));
         
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -105,8 +115,8 @@ public class MessagingActivity extends Activity
                 String message = text_Message.getText().toString();    
                                 
                 // Check if the user entered data into both fields, send the text if they did
-                if (recipient.length() > 0 && message.length() > 0) {
-//                	addContact(new Contact(phoneNumber, message, getBaseContext()));                	
+                if (recipient.length() > 0 && message.length() > 0)
+                {
                 	sendMessage(recipient, message);                
                 }
                 else			// Display error message; there was an empty field

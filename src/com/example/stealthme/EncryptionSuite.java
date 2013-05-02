@@ -18,6 +18,7 @@ import javax.crypto.spec.*;
 import java.util.Random;
 import java.security.*;
 import javax.crypto.*;
+
 import java.io.*;
 
 
@@ -26,8 +27,16 @@ public class EncryptionSuite
 	public KeyStore keyStore = null;
 	public static byte[] passHash;
 	public static HashMap<String, KeyAgreement> agreeMap = null;
+	private static EncryptionSuite instance = null;
 	
-	public EncryptionSuite(String Password)
+	public static EncryptionSuite getInstance(String Password)
+	{
+		if (instance == null)
+			instance = new EncryptionSuite(Password);
+		return instance;
+	}
+	
+	private EncryptionSuite(String Password)
 	{
 		loadKeyStore(Password);
 		loadPassword();
@@ -82,7 +91,7 @@ public class EncryptionSuite
 		} catch (Exception e) { return false; }
 	}
 	
-	public byte[] encrypt(String plainText, String recipient, int[] saltIndex, String Password)
+	public byte[] encrypt(byte[] plainText, String recipient, int[] saltIndex, String Password)
 	{
 		try {
 			byte[] key = getKey(recipient, Password).getEncoded();
@@ -90,7 +99,7 @@ public class EncryptionSuite
 			saltIndex[0] = Math.abs(randy.nextInt() % 48);
 			Cipher cipher = Cipher.getInstance("AES/CTR/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, 0, 16, "AES"), new IvParameterSpec(key, saltIndex[0], 16));
-			return cipher.doFinal(plainText.getBytes("UTF8"));
+			return cipher.doFinal(plainText);
 		} catch (Exception e) { return null; }
 	}
 	
