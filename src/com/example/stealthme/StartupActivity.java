@@ -37,9 +37,11 @@ public class StartupActivity extends Activity
         SharedPreferences.Editor editor = settings.edit();
         
         // Decide which window to open based on the stored authentication method
-        if (storedAuthType.equals("none"))
+        if (storedAuthType.equals(NO_DATA))
         {
-        	Intent intent = new Intent(this, ThreadsActivity.class);
+        	editor.putString("authType", "password");
+        	editor.commit();
+        	Intent intent = new Intent(this, PasswordLoginActivity.class);
             startActivity(intent);
         }
         else if (storedAuthType.equals("password"))
@@ -50,14 +52,6 @@ public class StartupActivity extends Activity
         else if (storedAuthType.equals("pin"))
         {
         	Intent intent = new Intent(this, PinLoginActivity.class);
-            startActivity(intent);
-        }
-        else if (storedAuthType.equals(NO_DATA))
-        {
-        	// No stored data, probably first time loading app; assume no authentication
-        	editor.putString("authType", "none");
-        	editor.commit();
-        	Intent intent = new Intent(this, ThreadsActivity.class);
             startActivity(intent);
         }
         else

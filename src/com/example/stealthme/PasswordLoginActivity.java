@@ -28,6 +28,15 @@ public class PasswordLoginActivity extends Activity
 		
 		setContentView(R.layout.activity_password_login);
 		
+		// Check to see if no password is set yet
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    	String stored = settings.getString("auth", "");
+    	if (stored.equals(""))
+    	{
+    		Intent intent = new Intent(this, ChangePinPassActivity.class);
+    		startActivity(intent);
+    	}
+		
 		// Instantiate the password field
 		password = (EditText)findViewById(R.id.text_LoginPassword);
 	}
