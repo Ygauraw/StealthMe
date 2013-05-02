@@ -23,6 +23,7 @@
             android:layout_height="15dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
             android:background="@drawable/threads_list_icon"
             android:contentDescription="@string/image_description_logo"
             android:maxHeight="50dp"
